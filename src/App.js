@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
+  const [quarter, setQuarter] = useState(1);
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
@@ -25,8 +26,20 @@ function App() {
       setAwayScore(awayScore + 6);
     }
   };
-  const homeFieldgoal = event => setHomeScore(homeScore + 3);
-  const awayFieldgoal = event => setAwayScore(awayScore + 3);
+
+  const changeQuarter = () => {
+    if(quarter === 4) {
+      if(homeScore === awayScore) {
+        alert(`It's a Tie!, Lets play again!`)
+        setQuarter(1)
+      } else {
+        alert(homeScore > awayScore ? 'Lions Win! Lets play again!' : 'Tigers Win! Lets play again!')
+        setQuarter(1)
+      }
+    } else {
+      setQuarter(quarter + 1)
+    }
+  }
 
   return (
     <div className="container">
@@ -45,7 +58,7 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter} />
       </section>
       <section className="buttons">
         {/* <button>Random Quarter</button> */}
@@ -54,15 +67,16 @@ function App() {
           <Button cn="homeButtons__touchdown" type={homeTouchdown}>
             Home Touchdown
           </Button>
-          <Button cn="homeButtons__fieldGoal" type={homeFieldgoal}>
+          <Button cn="homeButtons__fieldGoal" type={() => setHomeScore(homeScore + 3)}>
             Home Field Goal
           </Button>
         </div>
+        <Button cn="quarter_button" type={changeQuarter}>Quarter</Button>
         <div className="awayButtons">
           <Button cn="awayButtons__touchdown" type={awayTouchdown}>
             Away Touchdown
           </Button>
-          <Button cn="awayButtons__fieldGoal" type={awayFieldgoal}>
+          <Button cn="awayButtons__fieldGoal" type={() => setAwayScore(awayScore + 3)}>
             Away Field Goal
           </Button>
         </div>
