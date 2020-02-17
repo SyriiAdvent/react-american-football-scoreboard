@@ -1,7 +1,9 @@
 //TODO: STEP 1 - Import the useState hook.
 import React, { useState } from "react";
+import Button from "./Components/Button";
+import BottomRow from "./Components/BottomRow";
+
 import "./App.css";
-import BottomRow from "./BottomRow";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -22,7 +24,7 @@ function App() {
     } else {
       setAwayScore(awayScore + 6);
     }
-  }
+  };
   const homeFieldgoal = event => setHomeScore(homeScore + 3);
   const awayFieldgoal = event => setAwayScore(awayScore + 3);
 
@@ -37,7 +39,7 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">00:03</div>
+          <div className="timer">01:26</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>
@@ -46,23 +48,23 @@ function App() {
         <BottomRow />
       </section>
       <section className="buttons">
-      {/* <button>Random Quarter</button> */}
+        {/* <button>Random Quarter</button> */}
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={homeTouchdown}>
+          <Button cn="homeButtons__touchdown" type={homeTouchdown}>
             Home Touchdown
-          </button>
-          <button className="homeButtons__fieldGoal" onClick={homeFieldgoal}>
+          </Button>
+          <Button cn="homeButtons__fieldGoal" type={homeFieldgoal}>
             Home Field Goal
-          </button>
+          </Button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={awayTouchdown}>
+          <Button cn="awayButtons__touchdown" type={awayTouchdown}>
             Away Touchdown
-          </button>
-          <button className="awayButtons__fieldGoal" onClick={awayFieldgoal}>
+          </Button>
+          <Button cn="awayButtons__fieldGoal" type={awayFieldgoal}>
             Away Field Goal
-          </button>
+          </Button>
         </div>
       </section>
     </div>
