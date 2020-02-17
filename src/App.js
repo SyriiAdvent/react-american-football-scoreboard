@@ -31,10 +31,14 @@ function App() {
     if(quarter === 4) {
       if(homeScore === awayScore) {
         alert(`It's a Tie!, Lets play again!`)
-        setQuarter(1)
+        setQuarter(1);
+        setAwayScore(0);
+        setHomeScore(0);
       } else {
         alert(homeScore > awayScore ? 'Lions Win! Lets play again!' : 'Tigers Win! Lets play again!')
-        setQuarter(1)
+        setQuarter(1);
+        setAwayScore(0);
+        setHomeScore(0);
       }
     } else {
       setQuarter(quarter + 1)
